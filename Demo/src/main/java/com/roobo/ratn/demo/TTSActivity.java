@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.roobo.vui.api.VUIApi;
+import com.roobo.vui.api.tts.BasePlayer;
 import com.roobo.vui.api.tts.RTTSListener;
 
 
@@ -18,8 +22,11 @@ import com.roobo.vui.api.tts.RTTSListener;
 public class TTSActivity extends Activity implements RTTSListener {
 
     private static final String TAG = TTSActivity.class.getSimpleName();
+    public static final String EXTRA_TTS_TYPE = "EXTRA_TTS_TYPE";
 
     private EditText mTts;
+    private Spinner spinner;
+    private BasePlayer.TTSType ttsType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,8 @@ public class TTSActivity extends Activity implements RTTSListener {
         setContentView(R.layout.tts);
         mTts = (EditText) findViewById(R.id.tts);
         Button ttsBtn = (Button) findViewById(R.id.tts_btn);
+        spinner = (Spinner) findViewById(R.id.spinner);
+
         ttsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +48,33 @@ public class TTSActivity extends Activity implements RTTSListener {
             @Override
             public void onClick(View v) {
                 VUIApi.getInstance().stopSpeak();
+            }
+        });
+
+        ttsType = (BasePlayer.TTSType) getIntent().getSerializableExtra(EXTRA_TTS_TYPE);
+        String[] mItems = null;
+        if (ttsType == BasePlayer.TTSType.TYPE_ONLINE)
+            mItems = getResources().getStringArray(R.array.tts_language);
+        else
+            mItems = getResources().getStringArray(R.array.tts_speaker);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mItems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //绑定 Adapter到控件
+        spinner.setAdapter(adapter);
+
+        final String[] finalMItems = mItems;
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                String mItem = finalMItems[pos];
+                //// TODO: 18-1-10 更改发音人
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
             }
         });
     }

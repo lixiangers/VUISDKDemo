@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ASR识别语言:"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:entries="@+array/asr_language"/>
+
+    <LinearLayout
+        android:id="@+id/view_auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/start"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="开始录音"/>
+
+            <Button
+                android:id="@+id/stop"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="停止录音"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/autoController"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/manualWakeup"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="manualWakeUp"/>
+
+            <Button
+                android:id="@+id/sleep"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="sleep"/>
+
+            <Button
+                android:id="@+id/pseudoSleep"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="pseudoSleep"/>
+
+            <Button
+                android:id="@+id/cancelPseudoSleep"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="cancelPseudoSleep"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_add_grammar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="加载自定义的离线文件"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/touch_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="按住说话"/>
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="16sp"/>
+</LinearLayout>

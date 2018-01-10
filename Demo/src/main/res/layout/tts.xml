@@ -10,12 +10,26 @@
         android:orientation="vertical"
         tools:context="com.roobo.voice.tts.MainActivity">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发音选项："
+            android:textColor="@android:color/black"
+            android:textSize="20sp"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
+
         <EditText
             android:id="@+id/tts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="请输入播放内容"
-            />
+            android:hint="请输入播放内容"/>
+
 
         <Button
             android:id="@+id/tts_btn"

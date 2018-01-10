@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="asr_language">
+        <item>ZH</item>
+        <item>EN</item>
+        <item>HK</item>
+        <item>USA</item>
+    </string-array>
+
+    <string-array name="tts_speaker">
+        <item>LI_LI</item>
+        <item>YHB</item>
+    </string-array>
+
+    <string-array name="tts_language">
+        <item>ZH</item>
+        <item>EN</item>
+        <item>HK</item>
+    </string-array>
+</resources>

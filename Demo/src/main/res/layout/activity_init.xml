@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/sample_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择你的麦克风："/>
+
+    <RadioGroup
+        android:id="@+id/rg_mic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="android标准"/>
+
+        <RadioButton
+            android:id="@+id/rb_8009"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8009麦阵"/>
+
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="选择你的识别模式："/>
+
+    <RadioGroup
+        android:id="@+id/rg_rec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rb_sustained_wakeup_cloud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="持续唤醒与持续cloud识别　(唤醒词：智能管家)"/>
+
+        <RadioButton
+            android:id="@+id/rb_manual_vad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="类智能手表－按下说话，放开停止"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="选择你的TTS合成类型："/>
+
+    <RadioGroup
+        android:id="@+id/rg_tts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="在线合成"/>
+
+        <RadioButton
+            android:id="@+id/rb_offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本地合成"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/init"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始初始化"/>
+
+</LinearLayout>
+

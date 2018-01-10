@@ -111,11 +111,11 @@ public class GrammarActivity extends Activity {
                     if (b) {
                         offlineRecognizerController.enableGrammar(item.getBnfGrammar().getName()); //enable　grammar
                         item.setEnable(true);
-                        Log.d(MainActivity.TAG, "enableGrammar:"+item.getBnfGrammar().getName());
+                        Log.d(InitActivity.TAG, "enableGrammar:"+item.getBnfGrammar().getName());
                     } else {
                         offlineRecognizerController.disableGrammar(item.getBnfGrammar().getName()); //disable grammar
                         item.setEnable(false);
-                        Log.d(MainActivity.TAG, "disableGrammar:"+item.getBnfGrammar().getName());
+                        Log.d(InitActivity.TAG, "disableGrammar:"+item.getBnfGrammar().getName());
                     }
                 }
             });
