@@ -1,0 +1,38 @@
+android {
+    //型号
+    def micType = ""
+
+    if (project.hasProperty("MIC_TYPE")) {
+        micType = String.valueOf(project.property("MIC_TYPE"))
+    }
+    def signStoreFile = rootProject.rootDir.absolutePath + '/roobo_user_8009_userdebug.keystore'
+    def signStorePassword = 'android'
+    def signKeyAlias = 'system'
+    def signKeyPassword = 'android'
+    def uidInManifest = ""
+
+    println("MIC_TYPE:" + micType)
+
+    if (micType == 'QCOM_8009_6_39') {
+        //8009　需要系统权限
+        uidInManifest = "android.uid.system"
+    }
+
+    signingConfigs {
+        myConfig {
+            storeFile file("${signStoreFile}")
+            storePassword "${signStorePassword}"
+            keyAlias "${signKeyAlias}"
+            keyPassword "${signKeyPassword}"
+        }
+    }
+
+    defaultConfig {
+        buildConfigField "com.roobo.ratn.demo.mic.MicType", "MIC_TYPE", "com.roobo.ratn.demo.mic.MicType.${micType}"
+
+        manifestPlaceholders =
+                [
+                        uidInManifest: "${uidInManifest}"
+                ]
+    }
+}

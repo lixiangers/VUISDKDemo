@@ -1,0 +1,8 @@
+#BNF+EMV2.1;
+!grammar test_dynamic_offline_two;
+!start <test2>;
+
+<test2> : !tag(EXIT_TEST2,
+               文件传输助手!id(10403)
+            );
+            

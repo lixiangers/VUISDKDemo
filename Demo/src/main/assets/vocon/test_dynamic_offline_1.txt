@@ -1,0 +1,8 @@
+#BNF+EMV2.1;
+!grammar test_dynamic_offline_one;
+!start <test1>;
+
+<test1> : !tag(EXIT_TEST1,
+               测试动态加载!id(10402)
+            );
+            

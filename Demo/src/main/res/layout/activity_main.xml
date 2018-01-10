@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/sample_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择你的麦克风："/>
+
+    <RadioGroup
+        android:id="@+id/rg_mic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="android标准"/>
+
+        <RadioButton
+            android:id="@+id/rb_8009"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8009麦阵"/>
+
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="选择你的识别模式："/>
+
+    <RadioGroup
+        android:id="@+id/rg_rec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rb_sustained_wakeup_cloud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="持续唤醒与持续cloud识别　(唤醒词：智能管家)"/>
+
+        <RadioButton
+            android:id="@+id/rb_manual_vad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="类智能手表－按下说话，放开停止"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="选择你的TTS合成类型："/>
+
+    <RadioGroup
+        android:id="@+id/rg_tts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="在线合成"/>
+
+        <RadioButton
+            android:id="@+id/rb_offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本地合成"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/tts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TTS合成"/>
+
+    <Button
+        android:id="@+id/init"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始初始化"/>
+
+    <Button
+        android:id="@+id/bt_add_grammar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载自定义的离线文件"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="开始录音"/>
+
+        <Button
+            android:id="@+id/stop"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="停止录音"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/autoController"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/manualWakeup"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="manualWakeUp"/>
+
+        <Button
+            android:id="@+id/sleep"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="sleep"/>
+
+        <Button
+            android:id="@+id/pseudoSleep"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="pseudoSleep"/>
+
+        <Button
+            android:id="@+id/cancelPseudoSleep"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="cancelPseudoSleep"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/controller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/touch_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="按住说话"/>
+
+
+    <TextView
+        android:id="@+id/event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#9933cc"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#99cc33"
+        android:textSize="24sp"/>
+
+
+</LinearLayout>
+

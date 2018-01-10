@@ -1,0 +1,15 @@
+*.iml
+/local.properties
+.idea/
+.DS_Store
+/build
+/captures
+/.idea
+/gradle
+bin/
+gen/
+build/
+*.swp
+obj/
+.gradle
+/output
