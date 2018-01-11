@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mVUI.init(MainActivity.this, builder.build(), useSSE ? new CustomSSEAudioGenerator() : new CustomAndroidAudioGenerator(),
                 new InitListener() {
                     @Override
-                    public void onSucess() {
+                    public void onSuccess() {
                         Log.d(TAG, "onSucess: called");
                         setListener();
                         reprotLocation();
