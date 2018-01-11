@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.roobo.ratn.demo.util.JsonUtil;
 import com.roobo.toolkit.RError;
 import com.roobo.toolkit.recognizer.OnAIResponseListener;
 import com.roobo.vui.api.AutoTypeController;
@@ -75,7 +77,7 @@ public class ASRActivity extends Activity implements View.OnClickListener {
                                        int pos, long id) {
                 String[] languages = getResources().getStringArray(R.array.asr_language);
                 String language = languages[pos];
-                //// TODO: 18-1-10 更改在线ASR Language
+                VUIApi.getInstance().setCloudRecognizeLang(language);
             }
 
             @Override
@@ -135,10 +137,19 @@ public class ASRActivity extends Activity implements View.OnClickListener {
                         tvResult.setText(json);
                     }
                 });
+
+                AIResponse aiResponse = JsonUtil.getObject(json, AIResponse.class);
+                if (null == aiResponse) return;
+                String context = aiResponse.getoutputContext();
+                if (!TextUtils.isEmpty(context))
+                    //设置AI上下文
+                    VUIApi.getInstance().setAIContext(context);
             }
 
             @Override
             public void onFail(final RError rError) {
+                Log.d(TAG, "onAIResponse: onFail" + rError.getFailDetail());
+
                 handler.post(new Runnable() {
                     @Override
                     public void run() {

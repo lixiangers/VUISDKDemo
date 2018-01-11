@@ -1,6 +1,8 @@
 package com.roobo.ratn.demo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -69,7 +71,6 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init() {
-        init.setVisibility(View.GONE);
         int checkedRadioButtonId = rgMic.getCheckedRadioButtonId();
         boolean useSSE = false;
         if (checkedRadioButtonId == R.id.rb_android) {
@@ -111,7 +112,7 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onSuccess() {
                         Log.d(TAG, "onSucess: called");
-                        reprotLocation();
+                        reportLocation();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra(ASRActivity.EXTRA_VUI_TYPE, vuiType);
                         intent.putExtra(TTSActivity.EXTRA_TTS_TYPE, ttsType);
@@ -131,11 +132,9 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
         System.exit(0);
     }
 
-    private void reprotLocation() {
-//        WifiManager wifiManager = (WifiManager) getApplication().getSystemService(Context.WIFI_SERVICE);
-//        mVUI.reportLocationInfo(wifiManager.getScanResults());
-
-//        mVUI.reportLocationInfo("22.5375738","113.9568349","中国","广东省","深圳市","广东省 深圳市 南山区 科技南十二路 靠近交通银行(深圳高新园支行)");
+    private void reportLocation() {
+        WifiManager wifiManager = (WifiManager) getApplication().getSystemService(Context.WIFI_SERVICE);
+        VUIApi.getInstance().reportLocationInfo(wifiManager.getScanResults());
     }
 
     @Override

@@ -69,7 +69,7 @@ public class TTSActivity extends Activity implements RTTSListener {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int pos, long id) {
                 String mItem = finalMItems[pos];
-                //// TODO: 18-1-10 更改发音人
+                VUIApi.getInstance().setSpeaker(mItem);
             }
 
             @Override

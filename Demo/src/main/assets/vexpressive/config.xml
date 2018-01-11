@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <speakers>
-    <speaker name="Li-Li" language="zh-CN" languageName="中"/>
+    <speaker name="Li-Li" language="cmn-CHN"/>
+    <speaker name="Allison" language="eng-USA"/>
 </speakers>

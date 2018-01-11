@@ -3,6 +3,7 @@ package com.roobo.ratn.demo.grammar;
 import com.roobo.vui.common.vocon.BnfGrammar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,8 +21,10 @@ public class GrammarManager {
     private GrammarManager() {
         bnfGrammars = new ArrayList<>();
         viewModels = new ArrayList<>();
-        bnfGrammars.add(new BnfGrammar("test_dynamic_offline_1"));
-        bnfGrammars.add(new BnfGrammar("test_dynamic_offline_2"));
+        BnfGrammar test_dynamic_offline_1 = new BnfGrammar("test_dynamic_offline_1");
+        List<BnfGrammar> bnfGrammars = Arrays.asList(test_dynamic_offline_1);
+        this.bnfGrammars.add(test_dynamic_offline_1);
+        this.bnfGrammars.add(new BnfGrammar("test_dynamic_offline_2"));
     }
 
     public synchronized static GrammarManager getInstance() {
@@ -48,6 +51,10 @@ public class GrammarManager {
 
     public List<GrammarViewModel> getViewModels() {
         return viewModels;
+    }
+
+    public void setLoaded(boolean loaded) {
+        isLoaded = loaded;
     }
 
     public static class GrammarViewModel {
