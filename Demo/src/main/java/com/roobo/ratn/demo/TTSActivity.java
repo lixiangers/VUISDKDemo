@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.roobo.vui.api.VUIApi;
-import com.roobo.vui.api.tts.BasePlayer;
+import com.roobo.vui.api.tts.RTTSPlayer;
 import com.roobo.vui.api.tts.RTTSListener;
 
 
@@ -26,7 +26,7 @@ public class TTSActivity extends Activity implements RTTSListener {
 
     private EditText mTts;
     private Spinner spinner;
-    private BasePlayer.TTSType ttsType;
+    private RTTSPlayer.TTSType ttsType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +51,9 @@ public class TTSActivity extends Activity implements RTTSListener {
             }
         });
 
-        ttsType = (BasePlayer.TTSType) getIntent().getSerializableExtra(EXTRA_TTS_TYPE);
+        ttsType = (RTTSPlayer.TTSType) getIntent().getSerializableExtra(EXTRA_TTS_TYPE);
         String[] mItems = null;
-        if (ttsType == BasePlayer.TTSType.TYPE_ONLINE)
+        if (ttsType == RTTSPlayer.TTSType.TYPE_ONLINE)
             mItems = getResources().getStringArray(R.array.tts_language);
         else
             mItems = getResources().getStringArray(R.array.tts_speaker);

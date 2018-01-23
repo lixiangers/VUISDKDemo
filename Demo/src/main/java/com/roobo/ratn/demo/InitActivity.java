@@ -19,7 +19,7 @@ import com.roobo.toolkit.RError;
 import com.roobo.toolkit.recognizer.RooboRecognizer;
 import com.roobo.vui.api.InitListener;
 import com.roobo.vui.api.VUIApi;
-import com.roobo.vui.api.tts.BasePlayer;
+import com.roobo.vui.api.tts.RTTSPlayer;
 
 
 public class InitActivity extends AppCompatActivity implements View.OnClickListener {
@@ -28,7 +28,7 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
     private Button init;
     private RadioButton rbStandard, rb8009;
 
-    private BasePlayer.TTSType ttsType;
+    private RTTSPlayer.TTSType ttsType;
     private VUIApi.VUIType vuiType;
 
     @Override
@@ -90,9 +90,9 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
 
         int ttsID = rgTTSType.getCheckedRadioButtonId();
         if (ttsID == R.id.rb_online) {
-            ttsType = BasePlayer.TTSType.TYPE_ONLINE;
+            ttsType = RTTSPlayer.TTSType.TYPE_ONLINE;
         } else if (ttsID == R.id.rb_offline) {
-            ttsType = BasePlayer.TTSType.TYPE_OFFLINE;
+            ttsType = RTTSPlayer.TTSType.TYPE_OFFLINE;
         }
 
         VUIApi.InitParam.InitParamBuilder builder = new VUIApi.InitParam.InitParamBuilder();
@@ -102,12 +102,15 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
                 setTTSType(ttsType).
                 setVUIType(vuiType);
         //如果使用SSE，需要设置麦克风数量，参考信号数量
-        if (useSSE)
+        if (useSSE) {
             builder.setSseMicCount(MicParam.MIC_COUNT).
                     setSseRefCount(MicParam.REF_COUNT).
-                    setBsdInSSE("sse321_6mic_1ref_bf_asl_aec_sdr_18nr_39mm.bsd");
+                    setBsdInSSE("sse321_6mic_1ref_bf_asl_aec_sdr_18nr_39mm.bsd").setAudioGenerator(new CustomSSEAudioGenerator());
+        } else {
+            builder.setAudioGenerator(new CustomAndroidAudioGenerator());
+        }
 
-        VUIApi.getInstance().init(InitActivity.this, builder.build(), useSSE ? new CustomSSEAudioGenerator() : new CustomAndroidAudioGenerator(),
+        VUIApi.getInstance().init(InitActivity.this, builder.build(),
                 new InitListener() {
                     @Override
                     public void onSuccess() {

@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.roobo.vui.api.VUIApi;
-import com.roobo.vui.api.tts.BasePlayer;
+import com.roobo.vui.api.tts.RTTSPlayer;
 
 /**
  * Created by lixiang on 18-1-10.
@@ -16,7 +16,7 @@ import com.roobo.vui.api.tts.BasePlayer;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private VUIApi.VUIType vuiType;
-    private BasePlayer.TTSType ttsType;
+    private RTTSPlayer.TTSType ttsType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.bt_release).setOnClickListener(this);
 
         vuiType = (VUIApi.VUIType) getIntent().getSerializableExtra(ASRActivity.EXTRA_VUI_TYPE);
-        ttsType = (BasePlayer.TTSType) getIntent().getSerializableExtra(TTSActivity.EXTRA_TTS_TYPE);
+        ttsType = (RTTSPlayer.TTSType) getIntent().getSerializableExtra(TTSActivity.EXTRA_TTS_TYPE);
     }
 
     @Override
