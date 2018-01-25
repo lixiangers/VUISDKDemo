@@ -9,6 +9,6 @@ public enum MicType {
     STANDARD,
     //8009平台上_6麦_39mm
     QCOM_8009_6_39,
-    //R3399平台上_6麦_39mm
-    R3399,
+    //RL3399平台上_6麦_39mm
+    RK3399,
 }
