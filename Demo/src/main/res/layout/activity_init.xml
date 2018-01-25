@@ -29,10 +29,10 @@
             android:text="android标准"/>
 
         <RadioButton
-            android:id="@+id/rb_8009"
+            android:id="@+id/rb_mic_array"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8009麦阵"/>
+            android:text="麦阵"/>
 
     </RadioGroup>
 

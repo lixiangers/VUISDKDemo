@@ -26,7 +26,7 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
     public static final String TAG = "InitActivity";
     private RadioGroup rgMic, rgRec, rgTTSType;
     private Button init;
-    private RadioButton rbStandard, rb8009;
+    private RadioButton rbStandard, rbMicArray;
 
     private RTTSPlayer.TTSType ttsType;
     private VUIApi.VUIType vuiType;
@@ -48,9 +48,9 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
         //根据当前MIC类型选择mic类型
         if (MicType.STANDARD == BuildConfig.MIC_TYPE) {
             rbStandard.setChecked(true);
-            rb8009.setEnabled(false);
+            rbMicArray.setEnabled(false);
         } else {
-            rb8009.setChecked(true);
+            rbMicArray.setChecked(true);
             rbStandard.setEnabled(false);
         }
     }
@@ -60,7 +60,7 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
         rgRec = (RadioGroup) findViewById(R.id.rg_rec);
 
         rbStandard = (RadioButton) findViewById(R.id.rb_android);
-        rb8009 = (RadioButton) findViewById(R.id.rb_8009);
+        rbMicArray = (RadioButton) findViewById(R.id.rb_mic_array);
 
         init = (Button) findViewById(R.id.init);
         rgTTSType = (RadioGroup) findViewById(R.id.rg_tts);
@@ -75,7 +75,7 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
         boolean useSSE = false;
         if (checkedRadioButtonId == R.id.rb_android) {
             useSSE = false;
-        } else if (checkedRadioButtonId == R.id.rb_8009) {
+        } else if (checkedRadioButtonId == R.id.rb_mic_array) {
             useSSE = true;
         }
 

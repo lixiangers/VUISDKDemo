@@ -4,7 +4,9 @@ import android.util.Log;
 
 import com.roobo.media.AudioChunkRecord;
 import com.roobo.priority.PriorityManager;
+import com.roobo.ratn.demo.BuildConfig;
 import com.roobo.ratn.demo.mic.MicParam;
+import com.roobo.ratn.demo.mic.MicType;
 import com.roobo.vui.api.audiosource.BaseAudioGenerator;
 
 /**
@@ -30,7 +32,7 @@ public class CustomSSEAudioGenerator implements BaseAudioGenerator {
 
     @Override
     public short[][] getNextFrame() {
-        short[][] channels = new short[MicParam.VALID_CHANNELS.length][MicParam.SAMPLE_RATE*MicParam.DURATION_PER_FRAME_IN_MS/1000];
+        short[][] channels = new short[MicParam.VALID_CHANNELS.length][MicParam.SAMPLE_RATE * MicParam.DURATION_PER_FRAME_IN_MS / 1000];
         if (!mAudioChunkRecord.getChunkData(channels)) {
             Log.e(TAG, "[getNextFrame]: getChunkData return false.");
         }
@@ -39,7 +41,8 @@ public class CustomSSEAudioGenerator implements BaseAudioGenerator {
 
     private void init() {
         //8009平台需要先添加录音权限,其他平台不需要调用
-        PriorityManager.getInstance().start();
+        if (MicType.QCOM_8009_6_39 == BuildConfig.MIC_TYPE)
+            PriorityManager.getInstance().start();
 
         if (null == mAudioChunkRecord) {
             mAudioChunkRecord = new AudioChunkRecord();
