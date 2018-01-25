@@ -36,6 +36,6 @@ repositories {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.3.1'
-    compile(name:'vuisdk-debug-1.0.0-test',ext:'aar')
+    compile(name:'vuisdk-release-1.0.61-test',ext:'aar')
     compile 'com.alibaba:fastjson:1.1.58.android'
 }

@@ -5,7 +5,7 @@ package com.roobo.media;
  */
 public class AudioChunkRecord {
 
-    private volatile int mNativePtr;
+    private volatile long mNativePtr;
 
     static {
         //加载库文件
