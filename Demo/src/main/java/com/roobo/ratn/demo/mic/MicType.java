@@ -8,5 +8,7 @@ package com.roobo.ratn.demo.mic;
 public enum MicType {
     STANDARD,
     //8009平台上_6麦_39mm
-    QCOM_8009_6_39
+    QCOM_8009_6_39,
+    //R3399平台上_6麦_39mm
+    R3399,
 }

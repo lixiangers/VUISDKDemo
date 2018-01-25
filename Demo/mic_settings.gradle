@@ -13,8 +13,13 @@ android {
 
     println("MIC_TYPE:" + micType)
 
-    if (micType == 'QCOM_8009_6_39') {
-        //8009　需要系统权限
+    if (micType == 'R3399') {
+        signStoreFile = rootProject.rootDir.absolutePath + '/rk3399_userdebug.keystore'
+        signStorePassword = 'android'
+        signKeyAlias = 'system'
+        signKeyPassword = 'android'
+
+        //3399　需要系统权限
         uidInManifest = "android.uid.system"
     }
 
