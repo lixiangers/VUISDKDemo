@@ -4,7 +4,8 @@ import android.util.Log;
 
 import com.roobo.media.AudioChunkRecord;
 import com.roobo.priority.PriorityManager;
-import com.roobo.ratn.demo.mic.MicParam;
+import com.roobo.ratn.demo.BuildConfig;
+import com.roobo.ratn.demo.mic.MicType;
 import com.roobo.vui.api.audiosource.BaseAudioGenerator;
 
 /**
@@ -20,7 +21,7 @@ public class CustomSSEAudioGenerator implements BaseAudioGenerator {
 
     @Override
     public int getChannelCount() {
-        return MicParam.VALID_CHANNELS.length;
+        return BuildConfig.MIC_TYPE.getVALID_CHANNELS().length;
     }
 
     @Override
@@ -30,7 +31,9 @@ public class CustomSSEAudioGenerator implements BaseAudioGenerator {
 
     @Override
     public short[][] getNextFrame() {
-        short[][] channels = new short[MicParam.VALID_CHANNELS.length][MicParam.SAMPLE_RATE*MicParam.DURATION_PER_FRAME_IN_MS/1000];
+        MicType micType = BuildConfig.MIC_TYPE;
+
+        short[][] channels = new short[micType.getVALID_CHANNELS().length][micType.getSAMPLE_RATE() * micType.getDURATION_PER_FRAME_IN_MS() / 1000];
         if (!mAudioChunkRecord.getChunkData(channels)) {
             Log.e(TAG, "[getNextFrame]: getChunkData return false.");
         }
@@ -43,16 +46,17 @@ public class CustomSSEAudioGenerator implements BaseAudioGenerator {
 
         if (null == mAudioChunkRecord) {
             mAudioChunkRecord = new AudioChunkRecord();
-            mAudioChunkRecord.initialize(MicParam.DEVICE,
-                    MicParam.CARD,
-                    MicParam.SAMPLE_RATE,
-                    MicParam.PERIOD_SIZE,
-                    MicParam.PERIOD_COUNT,
-                    MicParam.READ_LENGTH,
-                    MicParam.VALID_CHANNELS,
-                    MicParam.GAIN_NORM,
-                    MicParam.GAIN_REF,
-                    MicParam.DURATION_PER_FRAME_IN_MS);
+            MicType micType = BuildConfig.MIC_TYPE;
+            mAudioChunkRecord.initialize(micType.getDEVICE(),
+                    micType.getCARD(),
+                    micType.getSAMPLE_RATE(),
+                    micType.getPERIOD_SIZE(),
+                    micType.getPERIOD_COUNT(),
+                    micType.getREAD_LENGTH(),
+                    micType.getVALID_CHANNELS(),
+                    micType.getGAIN_NORM(),
+                    micType.getGAIN_REF(),
+                    micType.getDURATION_PER_FRAME_IN_MS());
         }
     }
 

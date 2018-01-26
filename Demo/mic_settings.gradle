@@ -13,7 +13,7 @@ android {
 
     println("MIC_TYPE:" + micType)
 
-    if (micType == 'QCOM_8009_6_39') {
+    if (micType.startsWith('QCOM_8009')) {
         //8009　需要系统权限
         uidInManifest = "android.uid.system"
     }

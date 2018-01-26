@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.roobo.ratn.demo.mic.MicParam;
+import com.roobo.ratn.demo.mic.BSDConstants;
 import com.roobo.ratn.demo.mic.MicType;
 import com.roobo.ratn.demo.source.CustomAndroidAudioGenerator;
 import com.roobo.ratn.demo.source.CustomSSEAudioGenerator;
@@ -26,7 +26,7 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
     public static final String TAG = "InitActivity";
     private RadioGroup rgMic, rgRec, rgTTSType;
     private Button init;
-    private RadioButton rbStandard, rb8009;
+    private RadioButton rbStandard, rbMicArray;
 
     private RTTSPlayer.TTSType ttsType;
     private VUIApi.VUIType vuiType;
@@ -48,9 +48,9 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
         //根据当前MIC类型选择mic类型
         if (MicType.STANDARD == BuildConfig.MIC_TYPE) {
             rbStandard.setChecked(true);
-            rb8009.setEnabled(false);
+            rbMicArray.setEnabled(false);
         } else {
-            rb8009.setChecked(true);
+            rbMicArray.setChecked(true);
             rbStandard.setEnabled(false);
         }
     }
@@ -60,7 +60,7 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
         rgRec = (RadioGroup) findViewById(R.id.rg_rec);
 
         rbStandard = (RadioButton) findViewById(R.id.rb_android);
-        rb8009 = (RadioButton) findViewById(R.id.rb_8009);
+        rbMicArray = (RadioButton) findViewById(R.id.rb_mic_array);
 
         init = (Button) findViewById(R.id.init);
         rgTTSType = (RadioGroup) findViewById(R.id.rg_tts);
@@ -75,7 +75,7 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
         boolean useSSE = false;
         if (checkedRadioButtonId == R.id.rb_android) {
             useSSE = false;
-        } else if (checkedRadioButtonId == R.id.rb_8009) {
+        } else if (checkedRadioButtonId == R.id.rb_mic_array) {
             useSSE = true;
         }
 
@@ -103,9 +103,11 @@ public class InitActivity extends AppCompatActivity implements View.OnClickListe
                 setVUIType(vuiType);
         //如果使用SSE，需要设置麦克风数量，参考信号数量
         if (useSSE) {
-            builder.setSseMicCount(MicParam.MIC_COUNT).
-                    setSseRefCount(MicParam.REF_COUNT).
-                    setBsdInSSE("sse321_6mic_1ref_bf_asl_aec_sdr_18nr_39mm.bsd").setAudioGenerator(new CustomSSEAudioGenerator());
+            builder.setSseMicCount(BuildConfig.MIC_TYPE.getMIC_COUNT()).
+                    setSseRefCount(BuildConfig.MIC_TYPE.getREF_COUNT()).
+                    setBsdInSSE(BSDConstants.getBSDFileName()).
+                    setFrameShift(BuildConfig.MIC_TYPE.getFRAME_SHIFT()).
+                    setAudioGenerator(new CustomSSEAudioGenerator());
         } else {
             builder.setAudioGenerator(new CustomAndroidAudioGenerator());
         }
