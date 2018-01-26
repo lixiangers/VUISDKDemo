@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".InitActivity"
-            android:screenOrientation="portrait">
+            android:configChanges="orientation|layoutDirection|screenSize|screenLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -34,7 +34,7 @@
             android:configChanges="orientation|layoutDirection|screenSize|screenLayout"/>
         <activity
             android:name=".SemanticActivity"
-            android:screenOrientation="portrait"/>
+            android:configChanges="orientation|layoutDirection|screenSize|screenLayout"/>
     </application>
 
 </manifest>
