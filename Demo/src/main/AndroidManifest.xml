@@ -21,17 +21,17 @@
         </activity>
         <activity
             android:name=".TTSActivity"
-            android:screenOrientation="portrait"/>
+            android:configChanges="orientation|layoutDirection|screenSize|screenLayout"/>
         <activity
             android:name=".GrammarActivity"
-            android:screenOrientation="portrait"/>
+            android:configChanges="orientation|layoutDirection|screenSize|screenLayout"/>
 
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:configChanges="orientation|layoutDirection|screenSize|screenLayout"/>
         <activity
             android:name=".ASRActivity"
-            android:screenOrientation="portrait"/>
+            android:configChanges="orientation|layoutDirection|screenSize|screenLayout"/>
         <activity
             android:name=".SemanticActivity"
             android:screenOrientation="portrait"/>
