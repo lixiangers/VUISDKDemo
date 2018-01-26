@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -36,6 +37,8 @@ public class ASRActivity extends Activity implements View.OnClickListener {
     private Handler handler;
     private TextView tvResult;
     private Spinner spinner;
+    private Button btRecord;
+    private boolean isRecording = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,8 +53,8 @@ public class ASRActivity extends Activity implements View.OnClickListener {
         tvResult = (TextView) findViewById(R.id.tv_result);
         spinner = (Spinner) findViewById(R.id.spinner);
 
-        findViewById(R.id.start).setOnClickListener(this);
-        findViewById(R.id.stop).setOnClickListener(this);
+        btRecord = (Button) findViewById(R.id.bt_record);
+        btRecord.setOnClickListener(this);
         findViewById(R.id.sleep).setOnClickListener(this);
         findViewById(R.id.manualWakeup).setOnClickListener(this);
         findViewById(R.id.pseudoSleep).setOnClickListener(this);
@@ -66,8 +69,16 @@ public class ASRActivity extends Activity implements View.OnClickListener {
             viewAutoType.setVisibility(View.GONE);
             viewManualType.setVisibility(View.VISIBLE);
         }
+        updateRecordText();
 
         setListener();
+    }
+
+    private void updateRecordText() {
+        if (isRecording) {
+            btRecord.setText("停止录音");
+        } else
+            btRecord.setText("开始录音");
     }
 
     private void setListener() {
@@ -163,11 +174,13 @@ public class ASRActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.start:
-                iasrController = (AutoTypeController) VUIApi.getInstance().startRecognize();
-                break;
-            case R.id.stop:
-                VUIApi.getInstance().stopRecognize();
+            case R.id.bt_record:
+                if (isRecording) {
+                    VUIApi.getInstance().stopRecognize();
+                } else
+                    iasrController = (AutoTypeController) VUIApi.getInstance().startRecognize();
+                isRecording = !isRecording;
+                updateRecordText();
                 break;
             case R.id.sleep:
                 iasrController.sleep();
